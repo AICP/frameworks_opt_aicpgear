@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_USE_AAPT2 := true
 
-LOCAL_MODULE := AicpGear
+LOCAL_MODULE := AicpGear-preference
 
 LOCAL_PROGUARD_ENABLED := disabled
 LOCAL_JAR_EXCLUDED_FILES := none

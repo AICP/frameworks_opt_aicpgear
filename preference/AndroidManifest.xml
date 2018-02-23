@@ -16,7 +16,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aicp.gear">
+    package="com.aicp.gear.preference">
 
     <uses-sdk
         android:minSdkVersion="27" />
