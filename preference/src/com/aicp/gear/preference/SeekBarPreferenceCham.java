@@ -30,7 +30,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
     private final String TAG = getClass().getName();
 
     private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
-    private static final String AICPGEAR = "http://schemas.android.com/apk/res/com.aicp.gear";
+    private static final String AICPGEARNS = "http://schemas.android.com/apk/res-auto";
     private static final int DEFAULT_VALUE = 50;
 
     private int mMaxValue      = 100;
@@ -81,8 +81,8 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
         if (mDefaultValue < mMinValue || mDefaultValue > mMaxValue) {
             throw new IllegalArgumentException("Default value is out of range!");
         }
-        mUnitsLeft = getAttributeStringValue(attrs, AICPGEAR, "unitsLeft", "");
-        mUnitsRight = getAttributeStringValue(attrs, AICPGEAR, "unitsRight", "");
+        mUnitsLeft = getAttributeStringValue(attrs, AICPGEARNS, "unitsLeft", "");
+        mUnitsRight = getAttributeStringValue(attrs, AICPGEARNS, "unitsRight", "");
         Integer idR = a.getResourceId(R.styleable.SeekBarPreference_unitsRight, 0);
         if (idR > 0) {
             mUnitsRight = context.getResources().getString(idR);
@@ -92,7 +92,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
             mUnitsLeft = context.getResources().getString(idL);
         }
         try {
-            String newInterval = attrs.getAttributeValue(AICPGEAR, "interval");
+            String newInterval = attrs.getAttributeValue(AICPGEARNS, "interval");
             if(newInterval != null)
                 mInterval = Integer.parseInt(newInterval);
         }
