@@ -54,6 +54,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
     private boolean mTrackingTouch = false;
     private boolean mPopupAdded = false;
     private int mPopupWidth = 0;
+    private boolean initialised = false;
 
     public SeekBarPreferenceCham(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -75,8 +76,10 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
         mMinValue = attrs.getAttributeIntValue(ANDROIDNS, "min", 0);
         mDefaultValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", -1);
         if (mDefaultValue != attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", -2)) {
-            throw new IllegalArgumentException("Preference with key \"" + getKey() +
-                    "\" needs a default value (check your xml!)!");
+            mDefaultValue = (mMinValue + mMaxValue) / 2;
+            Log.w(TAG, "Preference with key \"" + getKey() +
+                    "\" does not have a default value set in xml, assuming " + mDefaultValue +
+                    " until further changes");
         }
         if (mDefaultValue < mMinValue || mDefaultValue > mMaxValue) {
             throw new IllegalArgumentException("Default value is out of range!");
@@ -205,6 +208,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
                 }
         });
 
+        initialised = true;
         updateView();
         mSeekBar.setOnSeekBarChangeListener(this);
     }
@@ -214,6 +218,9 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
      * @param view
      */
     protected void updateView() {
+        if (!initialised) {
+            return;
+        }
         try {
             mStatusText.setText(String.valueOf(mCurrentValue));
             mSeekBar.setProgress(mCurrentValue - mMinValue);
@@ -302,6 +309,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
 
     public void setValue(int value) {
         mCurrentValue = value;
+        updateView();
     }
 
     private Drawable getSeekBarThumb() {
@@ -357,4 +365,24 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
         ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).removeView(mPopupValue);
         mPopupAdded = false;
     }
+
+    public void setMax(int max) {
+        mMaxValue = max;
+        updateView();
+    }
+
+    public void setMin(int min) {
+        mMinValue = min;
+        updateView();
+    }
+
+    @Override
+    public void setDefaultValue(Object defaultValue) {
+        super.setDefaultValue(defaultValue);
+        if (defaultValue instanceof Integer) {
+            mDefaultValue = (Integer) defaultValue;
+            updateView();
+        }
+    }
+
 }
