@@ -17,7 +17,4 @@
  * limitations under the License.
  */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="seekbar_no_default_value">기본값이 설정되지 않음</string>
-  <string name="seekbar_default_string">기본값</string>
-</resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"></resources>

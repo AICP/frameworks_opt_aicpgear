@@ -20,6 +20,7 @@
 <resources>
   <string name="press_color_to_apply">Berühren Sie unten eine Farbe, um sie anzuwenden</string>
   <string name="hex">Hex:</string>
+  <string name="hex_hint">#ff000000</string>
   <string name="set">Festlegen</string>
   <string name="color_default">Standard</string>
 </resources>
