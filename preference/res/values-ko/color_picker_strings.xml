@@ -18,5 +18,8 @@
  */
 -->
 <resources>
+  <string name="press_color_to_apply">적용할 색상을 아래에서 선택하세요</string>
+  <string name="hex">Hex:</string>
+  <string name="set">설정하기</string>
   <string name="color_default">기본값</string>
 </resources>

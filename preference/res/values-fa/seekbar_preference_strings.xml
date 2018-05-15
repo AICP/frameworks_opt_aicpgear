@@ -17,4 +17,7 @@
  * limitations under the License.
  */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"></resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="seekbar_no_default_value">هیچ پیش‌فرضی تنظیم نشده است</string>
+  <string name="seekbar_default_string">پیش‌فرض</string>
+</resources>
