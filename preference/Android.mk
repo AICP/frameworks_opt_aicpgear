@@ -20,4 +20,6 @@ LOCAL_SHARED_ANDROID_LIBRARIES := \
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
+include frameworks/base/packages/SettingsLib/common.mk
+
 include $(BUILD_STATIC_JAVA_LIBRARY)
