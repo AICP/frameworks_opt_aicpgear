@@ -263,6 +263,11 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
         persistInt(newValue);
     }
 
+    public void refresh(int newValue) {
+        // this will trigger onProgressChanged and refresh everything
+        mSeekBar.setProgress(newValue - mMin);
+    }
+
     private void updateCurrentValueText() {
         if (mCurrentValue == mDefaultValue && mDefaultValue != -1) {
             mStatusText.setText(R.string.seekbar_default_string);
