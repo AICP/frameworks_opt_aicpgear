@@ -17,4 +17,9 @@
  * limitations under the License.
  */
 -->
-<resources></resources>
+<resources>
+  <string name="press_color_to_apply">Натисніть на колір нижче, щоб застосувати</string>
+  <string name="hex">Шістнадцятковий:</string>
+  <string name="set">Встановити</string>
+  <string name="color_default">За замовчуванням</string>
+</resources>
