@@ -36,6 +36,7 @@ import android.view.DisplayInfo;
 import android.view.WindowManager;
 import android.util.Log;
 
+import com.android.internal.R;
 import com.android.internal.telephony.PhoneConstants;
 
 import java.util.ArrayList;
@@ -210,5 +211,10 @@ public class DeviceUtils {
             // Ignore
         }
         return false;
+    }
+
+    // Check to see if device supports an alterative ambient display package
+    public static boolean hasAltAmbientDisplay(Context context) {
+        return context.getResources().getBoolean(com.android.internal.R.bool.config_alt_ambient_display);
     }
 }
