@@ -38,6 +38,26 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.defaultblack.com.android.systemui",
     };
 
+    private static final String[] DARK_NOTIF_OVERLAYS = {
+            "com.aicp.overlay.defaultdark.notif.android",
+            "com.aicp.overlay.defaultdark.notif.com.android.systemui",
+    };
+
+    private static final String[] BLACK_NOTIF_OVERLAYS = {
+            "com.aicp.overlay.defaultblack.notif.android",
+            "com.aicp.overlay.defaultblack.notif.com.android.systemui",
+    };
+
+    private static final String[] DARK_TRANSPARENT_OVERLAYS = {
+            "com.aicp.overlay.defaultdark.transparent.android",
+            "com.aicp.overlay.defaultdark.transparent.com.android.systemui",
+    };
+
+    private static final String[] BLACK_TRANSPARENT_OVERLAYS = {
+            "com.aicp.overlay.defaultblack.transparent.android",
+            "com.aicp.overlay.defaultblack.transparent.com.android.systemui",
+    };
+
     private static final String[] ACCENT_OVERLAYS = {
             "com.aicp.overlay.accent.amber.android",
             "com.aicp.overlay.accent.greenlight.android",
@@ -84,16 +104,33 @@ public class ThemeOverlayHelper {
         boolean changed = false;
         ContentResolver resolver = context.getContentResolver();
         int baseTheme = Settings.System.getInt(resolver, Settings.System.THEMING_BASE, 0);
-        boolean darkTheme = baseTheme == 1;
+        boolean enabled = baseTheme == 1;
         for (String darkOverlay: DARK_OVERLAYS) {
-            changed |= setOverlayEnabled(om, userId, darkOverlay, darkTheme);
+            changed |= setOverlayEnabled(om, userId, darkOverlay, enabled);
         }
-        boolean blackTheme = baseTheme == 2;
+        enabled = baseTheme == 2;
         for (String blackOverlay: BLACK_OVERLAYS) {
-            changed |= setOverlayEnabled(om, userId, blackOverlay, blackTheme);
+            changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
         }
+        enabled = baseTheme == 3;
+        for (String blackOverlay: DARK_NOTIF_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
+        }
+        enabled = baseTheme == 4;
+        for (String blackOverlay: BLACK_NOTIF_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
+        }
+        enabled = baseTheme == 5;
+        for (String blackOverlay: DARK_TRANSPARENT_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
+        }
+        enabled = baseTheme == 6;
+        for (String blackOverlay: BLACK_TRANSPARENT_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
+        }
+        enabled = baseTheme > 0 && baseTheme <= 6;
         for (String darkOverlay: DARK_COMMON_OVERLAYS) {
-            changed |= setOverlayEnabled(om, userId, darkOverlay, darkTheme||blackTheme);
+            changed |= setOverlayEnabled(om, userId, darkOverlay, enabled);
         }
         int accentSetting = Settings.System.getInt(resolver, Settings.System.THEMING_ACCENT, 0);
         String accentPackage = ACCENT_MAP.get(accentSetting);
