@@ -77,6 +77,16 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.accent.yellow.android",
     };
 
+    private static final String[] ROUND_OVERLAYS = {
+            "com.aicp.overlay.round.android",
+            "com.aicp.overlay.round.com.android.launcher3",
+    };
+
+    private static final String[] NONROUND_OVERLAYS = {
+            "com.aicp.overlay.nonround.android",
+            "com.aicp.overlay.nonround.com.android.launcher3",
+    };
+
     private static final HashMap<Integer, String> ACCENT_MAP = new HashMap();
     static {
         // Format: settings key, package name
@@ -137,6 +147,15 @@ public class ThemeOverlayHelper {
         for (String accentOverlay: ACCENT_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, accentOverlay,
                     accentOverlay.equals(accentPackage));
+        }
+        int cornerSetting = Settings.System.getInt(resolver, Settings.System.THEMING_CORNERS, 0);
+        enabled = cornerSetting == 1;
+        for (String roundOverlay: ROUND_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, roundOverlay, enabled);
+        }
+        enabled = cornerSetting == 2;
+        for (String nonRoundOverlay: NONROUND_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, nonRoundOverlay, enabled);
         }
         return changed;
     }
