@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Uygulamak istediğiniz rengin üzerine dokunun</string>
-  <string name="hex">Hex:</string>
-  <string name="set">Ayarla</string>
-  <string name="color_default">Varsayılan</string>
+    <string name="press_color_to_apply">Uygulamak istediğiniz rengin üzerine dokunun</string>
+    <string name="hex">Hex:</string>
+    <string name="set">Ayarla</string>
+    <string name="color_default">Varsayılan</string>
 </resources>

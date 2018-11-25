@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Seleziona il colore qui sotto per applicarlo</string>
-  <string name="hex">Esa:</string>
-  <string name="set">Imposta</string>
-  <string name="color_default">Predefinito</string>
+    <string name="press_color_to_apply">Seleziona il colore qui sotto per applicarlo</string>
+    <string name="hex">Esa:</string>
+    <string name="set">Imposta</string>
+    <string name="color_default">Predefinito</string>
 </resources>

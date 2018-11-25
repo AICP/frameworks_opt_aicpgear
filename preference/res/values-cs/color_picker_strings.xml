@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Pro použití klepněte na barvu umístěnou níže</string>
-  <string name="hex">Hex:</string>
-  <string name="set">Nastavit</string>
-  <string name="color_default">Výchozí</string>
+    <string name="press_color_to_apply">Pro použití klepněte na barvu umístěnou níže</string>
+    <string name="hex">Hex:</string>
+    <string name="set">Nastavit</string>
+    <string name="color_default">Výchozí</string>
 </resources>

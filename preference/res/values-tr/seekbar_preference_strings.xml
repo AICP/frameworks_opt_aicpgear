@@ -18,8 +18,8 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="seekbar_no_default_value">Varsayılan değer yok</string>
-  <string name="seekbar_default_value_set"><xliff:g id="number">%d</xliff:g> varsayılan değere ayarlandı</string>
-  <string name="seekbar_default_value_already_set">Varsayılan değer zaten ayarlanmış</string>
-  <string name="seekbar_default_string">Varsayılan</string>
+    <string name="seekbar_no_default_value">Varsayılan değer yok</string>
+    <string name="seekbar_default_value_set"><xliff:g id="number">%d</xliff:g> varsayılan değere ayarlandı</string>
+    <string name="seekbar_default_value_already_set">Varsayılan değer zaten ayarlanmış</string>
+    <string name="seekbar_default_string">Varsayılan</string>
 </resources>

@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Presione un color para aplicar los cambios</string>
-  <string name="hex">Hex:</string>
-  <string name="set">Aplicar</string>
-  <string name="color_default">Predeterminado</string>
+    <string name="press_color_to_apply">Presione un color para aplicar los cambios</string>
+    <string name="hex">Hex:</string>
+    <string name="set">Aplicar</string>
+    <string name="color_default">Predeterminado</string>
 </resources>

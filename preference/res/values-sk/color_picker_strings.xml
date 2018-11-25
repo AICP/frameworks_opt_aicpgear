@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Kliknite na farbu, ktorú chcete použiť</string>
-  <string name="hex">Hex:</string>
-  <string name="set">Nastaviť</string>
-  <string name="color_default">Predvolená</string>
+    <string name="press_color_to_apply">Kliknite na farbu, ktorú chcete použiť</string>
+    <string name="hex">Hex:</string>
+    <string name="set">Nastaviť</string>
+    <string name="color_default">Predvolená</string>
 </resources>

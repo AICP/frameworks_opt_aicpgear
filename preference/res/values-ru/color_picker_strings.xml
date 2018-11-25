@@ -18,8 +18,8 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">Нажмите на цвет для применения</string>
-  <string name="hex">Hex код:</string>
-  <string name="set">Выбрать</string>
-  <string name="color_default">По умолчанию</string>
+    <string name="press_color_to_apply">Нажмите на цвет для применения</string>
+    <string name="hex">Hex код:</string>
+    <string name="set">Выбрать</string>
+    <string name="color_default">По умолчанию</string>
 </resources>

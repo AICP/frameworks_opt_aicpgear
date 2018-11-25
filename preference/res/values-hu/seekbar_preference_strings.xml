@@ -18,8 +18,8 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="seekbar_no_default_value">Nincs alapértelmezett érték</string>
-  <string name="seekbar_default_value_set"><xliff:g id="number">%d</xliff:g> beállítása alapértelmezett értéknek</string>
-  <string name="seekbar_default_value_already_set">Alapértelmezett érték már be van állítva</string>
-  <string name="seekbar_default_string">Alapértelmezett</string>
+    <string name="seekbar_no_default_value">Nincs alapértelmezett érték</string>
+    <string name="seekbar_default_value_set"><xliff:g id="number">%d</xliff:g> beállítása alapértelmezett értéknek</string>
+    <string name="seekbar_default_value_already_set">Alapértelmezett érték már be van állítva</string>
+    <string name="seekbar_default_string">Alapértelmezett</string>
 </resources>
