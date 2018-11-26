@@ -84,6 +84,7 @@ public class ThemeOverlayHelper {
 
     private static final String[] NONROUND_OVERLAYS = {
             "com.aicp.overlay.nonround.android",
+            "com.aicp.overlay.nonround.com.android.systemui",
             "com.aicp.overlay.nonround.com.android.launcher3",
     };
 
