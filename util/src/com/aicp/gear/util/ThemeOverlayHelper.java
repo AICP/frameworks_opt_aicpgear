@@ -88,6 +88,21 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.nonround.com.android.launcher3",
     };
 
+    private static final String QS_SHAPE_PLAIN_OVERLAY =
+            "com.aicp.overlay.qsshape.plain.com.android.systemui";
+
+    private static final String QS_SHAPE_PLAIN_ACCENT_OVERLAY =
+            "com.aicp.overlay.qsshape.plainaccent.com.android.systemui";
+
+    private static final String QS_SHAPE_SQUIRCLE_ACCENT_OVERLAY =
+            "com.aicp.overlay.qsshape.squircle.com.android.systemui";
+
+    private static final String QS_SHAPE_SQUARE_ACCENT_OVERLAY =
+            "com.aicp.overlay.qsshape.square.com.android.systemui";
+
+    private static final String QS_SHAPE_ROUNDED_SQUARE_ACCENT_OVERLAY =
+            "com.aicp.overlay.qsshape.roundedsquare.com.android.systemui";
+
     private static final HashMap<Integer, String> ACCENT_MAP = new HashMap();
     static {
         // Format: settings key, package name
@@ -158,6 +173,16 @@ public class ThemeOverlayHelper {
         for (String nonRoundOverlay: NONROUND_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, nonRoundOverlay, enabled);
         }
+        int qsStyleSetting = Settings.System.getInt(resolver, Settings.System.THEMING_QS_SHAPE, 0);
+        changed |= setOverlayEnabled(om, userId, QS_SHAPE_PLAIN_OVERLAY, qsStyleSetting == 1);
+        changed |= setOverlayEnabled(om, userId, QS_SHAPE_PLAIN_ACCENT_OVERLAY,
+                qsStyleSetting == 2);
+        changed |= setOverlayEnabled(om, userId, QS_SHAPE_SQUIRCLE_ACCENT_OVERLAY,
+                qsStyleSetting == 3);
+        changed |= setOverlayEnabled(om, userId, QS_SHAPE_SQUARE_ACCENT_OVERLAY,
+                qsStyleSetting == 4);
+        changed |= setOverlayEnabled(om, userId, QS_SHAPE_ROUNDED_SQUARE_ACCENT_OVERLAY,
+                qsStyleSetting == 5);
         return changed;
     }
 
