@@ -106,8 +106,14 @@ public class ColorPickerPreference extends Preference implements
                 int defValCheck = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue",
                         DEF_VALUE_DEFAULT_CHECK);
                 if (defValCheck != mDefValue) {
-                    throw new IllegalArgumentException("Preference with key \"" + getKey() +
-                            "\" needs a default value (check your xml!)!");
+                    int defValResource = attrs.getAttributeResourceValue(ANDROIDNS, "defaultValue",
+                            0);
+                    if (defValResource != 0) {
+                        mDefValue = context.getResources().getInteger(defValResource);
+                    } else {
+                        throw new IllegalArgumentException("Preference with key \"" + getKey() +
+                                "\" needs a default value (check your xml!)!");
+                    }
                 }
             }
         }
