@@ -18,6 +18,7 @@
 package net.margaritov.preference.colorpicker;
 
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
@@ -55,6 +56,10 @@ public class ColorPickerDialog
 
     private OnColorChangedListener mListener;
 
+    private NotificationManager mNotificationManager;
+    private boolean mPreviewLed = false;
+    private boolean mDisableAlpha = true;
+
     public interface OnColorChangedListener {
         public void onColorChanged(int color);
     }
@@ -62,14 +67,16 @@ public class ColorPickerDialog
     public ColorPickerDialog(Context context, int initialColor) {
         super(context);
 
-        init(initialColor);
+        init(context, initialColor);
     }
 
-    private void init(int color) {
+    private void init(Context context, int color) {
         // To fight color branding.
         getWindow().setFormat(PixelFormat.RGBA_8888);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setUp(color);
+        mNotificationManager = (NotificationManager)
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
 
     }
 
@@ -117,7 +124,7 @@ public class ColorPickerDialog
         setColorAndClickAction(mYellow, Color.YELLOW);
 
         if (mHex != null) {
-            mHex.setText(ColorPickerPreference.convertToARGB(color));
+            mHex.setText(ColorPickerPreference.convertToARGB(color, mDisableAlpha));
         }
         if (mSetButton != null) {
            mSetButton.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +140,10 @@ public class ColorPickerDialog
                 }
             });
         }
+
+        if (mPreviewLed) {
+            startLedPreview(color);
+        }
     }
 
     @Override
@@ -141,7 +152,7 @@ public class ColorPickerDialog
         mNewColor.setColor(color);
         try {
             if (mHex != null) {
-                mHex.setText(ColorPickerPreference.convertToARGB(color));
+                mHex.setText(ColorPickerPreference.convertToARGB(color, mDisableAlpha));
             }
         } catch (Exception e) {
 
@@ -150,10 +161,17 @@ public class ColorPickerDialog
          * if (mListener != null) { mListener.onColorChanged(color); }
          */
 
+        if (mPreviewLed) {
+            startLedPreview(color);
+        }
     }
 
     public void setAlphaSliderVisible(boolean visible) {
+        mDisableAlpha = !visible;
         mColorPicker.setAlphaSliderVisible(visible);
+        if (mHex != null) {
+            mHex.setText(ColorPickerPreference.convertToARGB(mNewColor.getColor(), mDisableAlpha));
+        }
     }
 
     public void setColorAndClickAction(ColorPickerPanelView previewRect, final int color) {
@@ -199,6 +217,9 @@ public class ColorPickerDialog
         Bundle state = super.onSaveInstanceState();
         state.putInt("old_color", mOldColor.getColor());
         state.putInt("new_color", mNewColor.getColor());
+        if (mPreviewLed) {
+            stopLedPreview();
+        }
         return state;
     }
 
@@ -207,6 +228,31 @@ public class ColorPickerDialog
         super.onRestoreInstanceState(savedInstanceState);
         mOldColor.setColor(savedInstanceState.getInt("old_color"));
         mColorPicker.setColor(savedInstanceState.getInt("new_color"), true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        stopLedPreview();
+    }
+
+    public void setPreviewLed(boolean previewLed) {
+        if (mPreviewLed != previewLed) {
+            mPreviewLed = previewLed;
+            if (mPreviewLed) {
+                startLedPreview(mNewColor.getColor());
+            } else {
+                stopLedPreview();
+            }
+        }
+    }
+
+    private void startLedPreview(int color) {
+        mNotificationManager.forceShowLedLight(color & 0xffffff);
+    }
+
+    private void stopLedPreview() {
+        mNotificationManager.forceShowLedLight(-1);
     }
 
 }

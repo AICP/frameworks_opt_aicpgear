@@ -54,10 +54,12 @@ public class ColorPickerPreference extends Preference implements
 
     // if android:defaultValue is not set, button is not enabled
     private static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
+    private static final String AICPGEARNS = "http://schemas.android.com/apk/res-auto";
     private static final int DEF_VALUE_DEFAULT = -6;
     private static final int DEF_VALUE_DEFAULT_CHECK = -7; // != DEF_VALUE_DEFAULT
     private int mDefValue = -1;
     private boolean mAutoSummary = false;
+    private boolean mPreviewLed = false;
 
     private EditText mEditText;
 
@@ -96,7 +98,9 @@ public class ColorPickerPreference extends Preference implements
         mDensity = getContext().getResources().getDisplayMetrics().density;
         setOnPreferenceClickListener(this);
         if (attrs != null) {
-            mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", false);
+            mPreviewLed = attrs.getAttributeBooleanValue(AICPGEARNS, "ledPreview", false);
+            mAlphaSliderEnabled = attrs.getAttributeBooleanValue(AICPGEARNS, "alphaSlider",
+                    !mPreviewLed);
             mDefValue = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue", DEF_VALUE_DEFAULT);
             if (mDefValue == DEF_VALUE_DEFAULT) {
                 int defValCheck = attrs.getAttributeIntValue(ANDROIDNS, "defaultValue",
@@ -177,7 +181,7 @@ public class ColorPickerPreference extends Preference implements
 
         // Dynamic summary
         if (mAutoSummary || TextUtils.isEmpty(getSummary())) {
-            setSummary(convertToARGB(mValue), true);
+            setSummary(convertToARGB(mValue, !mAlphaSliderEnabled), true);
         }
 
         ImageView iView = new ImageView(getContext());
@@ -272,6 +276,9 @@ public class ColorPickerPreference extends Preference implements
         if (mAlphaSliderEnabled) {
             mDialog.setAlphaSliderVisible(true);
         }
+        if (mPreviewLed) {
+            mDialog.setPreviewLed(true);
+        }
         if (state != null) {
             mDialog.onRestoreInstanceState(state);
         }
@@ -302,9 +309,10 @@ public class ColorPickerPreference extends Preference implements
      * For custom purposes. Not used by ColorPickerPreferrence
      *
      * @param color
+     * @param disableAlpha
      * @author Unknown
      */
-    public static String convertToARGB(int color) {
+    public static String convertToARGB(int color, boolean disableAlpha) {
         String alpha = Integer.toHexString(Color.alpha(color));
         String red = Integer.toHexString(Color.red(color));
         String green = Integer.toHexString(Color.green(color));
@@ -324,6 +332,10 @@ public class ColorPickerPreference extends Preference implements
 
         if (blue.length() == 1) {
             blue = "0" + blue;
+        }
+
+        if (disableAlpha) {
+            alpha = "";
         }
 
         return "#" + alpha + red + green + blue;
