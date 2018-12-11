@@ -433,4 +433,8 @@ public class ColorPickerPreference extends Preference implements
             }
         };
     }
+
+    public void setDefaultValue(int color) {
+        mDefValue = color;
+    }
 }
