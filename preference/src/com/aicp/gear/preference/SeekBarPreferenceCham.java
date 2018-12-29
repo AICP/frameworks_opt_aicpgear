@@ -10,6 +10,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,8 +104,9 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
             Log.e(TAG, "Invalid interval value", e);
         }
 
-        mThumbDefaultValueColor = a.getColor(
-                R.styleable.SeekBarPreference_thumb_default_value_color, 0xff000000);
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(android.R.attr.colorForeground, typedValue, true);
+        mThumbDefaultValueColor = typedValue.data;
         a.recycle();
     }
 
