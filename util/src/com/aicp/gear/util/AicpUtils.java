@@ -21,7 +21,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
@@ -43,8 +45,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 
 import java.util.List;
-
 import java.util.Locale;
+import java.util.Objects;
 
 public class AicpUtils {
 
@@ -176,6 +178,32 @@ public class AicpUtils {
             // Ignore
         }
         return false;
+    }
+
+    /**
+     * Checks if a package is available to handle the given action.
+     */
+    public static boolean resolveIntent(Context context, Intent intent) {
+        if (DEBUG) Log.d(TAG, "resolveIntent " + Objects.toString(intent));
+        // check whether the target handler exist in system
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> results = pm.queryIntentActivitiesAsUser(intent,
+                PackageManager.MATCH_SYSTEM_ONLY,
+                UserHandle.myUserId());
+        for (ResolveInfo resolveInfo : results) {
+            // check is it installed in system.img, exclude the application
+            // installed by user
+            if (DEBUG) Log.d(TAG, "resolveInfo: " + Objects.toString(resolveInfo));
+            if ((resolveInfo.activityInfo.applicationInfo.flags &
+                    ApplicationInfo.FLAG_SYSTEM) != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean resolveIntent(Context context, String action) {
+        return resolveIntent(context, new Intent(action));
     }
 
     // Omni Switch Constants
@@ -355,4 +383,5 @@ public class AicpUtils {
         }
         return null;
     }
+
 }
