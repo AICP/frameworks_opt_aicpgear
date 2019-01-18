@@ -18,9 +18,9 @@
  */
 -->
 <resources>
-  <string name="press_color_to_apply">برای اعمال رنگ زیر لمس کنید</string>
-  <string name="hex">هگزادسیمال:</string>
-  <string name="hex_hint">#ff000000</string>
-  <string name="set">اعمال</string>
-  <string name="color_default">پیش‌فرض</string>
+    <string name="press_color_to_apply">برای اعمال رنگ زیر لمس کنید</string>
+    <string name="hex">هگزادسیمال:</string>
+    <string name="hex_hint">#ff000000</string>
+    <string name="set">اعمال</string>
+    <string name="color_default">پیش‌فرض</string>
 </resources>

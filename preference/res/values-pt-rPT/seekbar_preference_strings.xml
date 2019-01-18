@@ -18,8 +18,8 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="seekbar_no_default_value">Nenhum padrão definido</string>
-  <string name="seekbar_default_value_set">Valor definido como padrão <xliff:g id="number">%d</xliff:g></string>
-  <string name="seekbar_default_value_already_set">Valor padrão já está definido</string>
-  <string name="seekbar_default_string">Padrão</string>
+    <string name="seekbar_no_default_value">Nenhum padrão definido</string>
+    <string name="seekbar_default_value_set">Valor definido como padrão <xliff:g id="number">%d</xliff:g></string>
+    <string name="seekbar_default_value_already_set">Valor padrão já está definido</string>
+    <string name="seekbar_default_string">Padrão</string>
 </resources>
