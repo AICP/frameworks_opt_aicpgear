@@ -71,6 +71,18 @@ public class AppPicker extends ListActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mIsActivitiesList) {
+            setListAdapter(listadapter);
+            setTitle(R.string.app_select_title);
+            // Reset the dialog again
+            mIsActivitiesList = false;
+        } else {
+            finish();
+        }
+    }
+
     private List<ApplicationInfo> checkForLaunchIntent(List<ApplicationInfo> list) {
         ArrayList<ApplicationInfo> applist = new ArrayList<>();
 
