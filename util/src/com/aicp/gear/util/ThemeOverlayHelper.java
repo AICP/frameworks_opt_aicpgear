@@ -76,6 +76,8 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.accent.turquoise.android",
             "com.aicp.overlay.accent.yellow.android",
             "com.aicp.overlay.accent.grey.android",
+            "com.aicp.overlay.accent.carnation.android",
+            "com.aicp.overlay.accent.whiteblack.android",
     };
 
     private static final String[] ROUND_OVERLAYS = {
@@ -127,6 +129,8 @@ public class ThemeOverlayHelper {
         ACCENT_MAP.put(15, ACCENT_OVERLAYS[14]); // turquoise
         ACCENT_MAP.put(16, ACCENT_OVERLAYS[15]); // yellow
         ACCENT_MAP.put(17, ACCENT_OVERLAYS[16]); // grey
+        ACCENT_MAP.put(18, ACCENT_OVERLAYS[17]); // carnation
+        ACCENT_MAP.put(19, ACCENT_OVERLAYS[18]); // white black
     }
 
     private ThemeOverlayHelper() {}
