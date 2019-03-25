@@ -163,7 +163,7 @@ public class ThemeOverlayHelper {
         for (String blackOverlay: BLACK_TRANSPARENT_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
         }
-        enabled = baseTheme > 0 && baseTheme <= 6;
+        enabled = isDarkBaseTheme(baseTheme);
         for (String darkOverlay: DARK_COMMON_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, darkOverlay, enabled);
         }
@@ -224,5 +224,9 @@ public class ThemeOverlayHelper {
     public static boolean isUsingDarkTheme(IOverlayManager om, int userId) {
         return isOverlayEnabled(om, userId, DARK_OVERLAYS[0]) ||
                 isOverlayEnabled(om, userId, BLACK_OVERLAYS[0]);
+    }
+
+    public static boolean isDarkBaseTheme(int baseTheme) {
+        return baseTheme > 0 && baseTheme <= 6;
     }
 }
