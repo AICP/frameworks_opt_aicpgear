@@ -229,4 +229,41 @@ public class ThemeOverlayHelper {
     public static boolean isDarkBaseTheme(int baseTheme) {
         return baseTheme > 0 && baseTheme <= 6;
     }
+
+    private static boolean hasThemedNotifications(int baseTheme) {
+            return baseTheme >= 3 && baseTheme <= 6;
+    }
+
+    /**
+     * @return
+     * True if the theme change requires a SystemUI restart, false otherwise.
+     */
+    public static boolean doesThemeChangeRequireSystemUIRestart(Context context,
+                                                                String preferenceKey,
+                                                                Integer previousValue,
+                                                                int newValue) {
+        if (previousValue == null) {
+            // This means new value was not stored yet, we can still grab the old value
+            // (or this method wasn't used properly)
+            previousValue = Settings.System.getInt(context.getContentResolver(), preferenceKey, 0);
+        }
+        if (previousValue == newValue) {
+            // Nothing to do
+            return false;
+        }
+        if (Settings.System.THEMING_BASE.equals(preferenceKey)) {
+            // If notifications are themed (both previously or as a result),
+            // we need to restart SystemUI for changes to have effect
+            if (hasThemedNotifications(newValue) || hasThemedNotifications(previousValue)) {
+                return true;
+            }
+            return false;
+        } else if (Settings.System.THEMING_CORNERS.equals(preferenceKey)) {
+            // Rounded corners of notifications need systemui restart
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
