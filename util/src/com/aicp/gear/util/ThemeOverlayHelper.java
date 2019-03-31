@@ -1,5 +1,6 @@
 package com.aicp.gear.util;
 
+import android.app.UiModeManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.om.IOverlayManager;
@@ -139,6 +140,7 @@ public class ThemeOverlayHelper {
         boolean changed = false;
         ContentResolver resolver = context.getContentResolver();
         int baseTheme = Settings.System.getInt(resolver, Settings.System.THEMING_BASE, 0);
+        boolean isDarkTheme = isDarkBaseTheme(baseTheme);
         boolean enabled = baseTheme == 1;
         for (String darkOverlay: DARK_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, darkOverlay, enabled);
@@ -163,7 +165,7 @@ public class ThemeOverlayHelper {
         for (String blackOverlay: BLACK_TRANSPARENT_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, blackOverlay, enabled);
         }
-        enabled = isDarkBaseTheme(baseTheme);
+        enabled = isDarkTheme;
         for (String darkOverlay: DARK_COMMON_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, darkOverlay, enabled);
         }
@@ -193,6 +195,9 @@ public class ThemeOverlayHelper {
         changed |= setOverlayEnabled(om, userId, QS_SHAPE_ROUNDED_SQUARE_ACCENT_OVERLAY,
                 qsStyleSetting == 5);
         changed |= setOverlayEnabled(om, userId, QS_SHAPE_HEXAGON_OVERLAY, qsStyleSetting == 6);
+
+        updateNightMode(context, isDarkTheme);
+
         return changed;
     }
 
@@ -264,6 +269,18 @@ public class ThemeOverlayHelper {
         } else {
             return false;
         }
+    }
+
+    private static void updateNightMode(Context context, boolean isUsingDarkTheme) {
+        if (Settings.System.getInt(context.getContentResolver(),
+                    Settings.System.THEMING_CONTROL_NIGHT_MODE, 1) == 0) {
+            // Controlling night mode together with our theme disabled
+            return;
+        }
+        UiModeManager uiManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        uiManager.setNightMode(isUsingDarkTheme
+                ? UiModeManager.MODE_NIGHT_YES
+                : UiModeManager.MODE_NIGHT_NO);
     }
 
 }
