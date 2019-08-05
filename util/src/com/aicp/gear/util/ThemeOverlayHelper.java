@@ -93,6 +93,11 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.nonround.com.android.launcher3",
     };
 
+    private static final String[] OLDICONS_OVERLAYS = {
+            "com.aicp.overlay.oldicons.com.android.systemui",
+            "com.aicp.overlay.oldicons.com.android.settings",
+    };
+
     private static final String QS_SHAPE_PLAIN_OVERLAY =
             "com.aicp.overlay.qsshape.plain.com.android.systemui";
 
@@ -186,6 +191,12 @@ public class ThemeOverlayHelper {
         for (String nonRoundOverlay: NONROUND_OVERLAYS) {
             changed |= setOverlayEnabled(om, userId, nonRoundOverlay, enabled);
         }
+        int systemIconStyleSetting =
+                Settings.System.getInt(resolver, Settings.System.THEMING_SYSTEM_ICONS_STYLE, 0);
+        enabled = systemIconStyleSetting == 1;
+        for (String oldIconsOverlay: OLDICONS_OVERLAYS) {
+            changed |= setOverlayEnabled(om, userId, oldIconsOverlay, enabled);
+        }
         int qsStyleSetting = Settings.System.getInt(resolver, Settings.System.THEMING_QS_SHAPE, 0);
         changed |= setOverlayEnabled(om, userId, QS_SHAPE_PLAIN_OVERLAY, qsStyleSetting == 1);
         changed |= setOverlayEnabled(om, userId, QS_SHAPE_PLAIN_ACCENT_OVERLAY,
@@ -267,6 +278,10 @@ public class ThemeOverlayHelper {
             return false;
         } else if (Settings.System.THEMING_CORNERS.equals(preferenceKey)) {
             // Rounded corners of notifications need systemui restart
+            return true;
+        } else if (Settings.System.THEMING_SYSTEM_ICONS_STYLE.equals(preferenceKey)) {
+            // Not sure why this doesn't work without restart, it actually get's updated after
+            // a QS shape change without restart...
             return true;
         } else {
             return false;
