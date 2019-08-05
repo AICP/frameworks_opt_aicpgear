@@ -5,11 +5,13 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
+import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.Settings;
 import android.util.Log;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class ThemeOverlayHelper {
 
@@ -141,7 +143,23 @@ public class ThemeOverlayHelper {
         ACCENT_MAP.put(20, ACCENT_OVERLAYS[19]); // indigo
     }
 
+    private static final HashSet<Uri> THEMING_SYSTEM_SETTINGS = new HashSet();
+    static {
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_BASE));
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_ACCENT));
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_CORNERS));
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_QS_SHAPE));
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(
+                    Settings.System.THEMING_CONTROL_NIGHT_MODE));
+        THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(
+                    Settings.System.THEMING_SYSTEM_ICONS_STYLE));
+    }
+
     private ThemeOverlayHelper() {}
+
+    public static boolean isThemeSystemSetting(Uri uri) {
+        return THEMING_SYSTEM_SETTINGS.contains(uri);
+    }
 
     public static boolean updateOverlays(Context context, IOverlayManager om, int userId) {
         boolean changed = false;
