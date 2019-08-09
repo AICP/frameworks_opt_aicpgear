@@ -23,6 +23,10 @@ import android.util.AttributeSet;
 public class ListPreference extends android.support.v7.preference.ListPreference {
     private boolean mAutoSummary = false;
 
+    public ListPreference(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
+        super(context, attrs, defStyle, defStyleRes);
+    }
+
     public ListPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
