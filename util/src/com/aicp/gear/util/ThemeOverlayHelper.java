@@ -82,6 +82,7 @@ public class ThemeOverlayHelper {
             "com.aicp.overlay.accent.carnation.android",
             "com.aicp.overlay.accent.whiteblack.android",
             "com.aicp.overlay.accent.indigo.android",
+            "com.aicp.overlay.accent.oxygenred.android",
     };
 
     private static final String[] ROUND_OVERLAYS = {
@@ -141,6 +142,7 @@ public class ThemeOverlayHelper {
         ACCENT_MAP.put(18, ACCENT_OVERLAYS[17]); // carnation
         ACCENT_MAP.put(19, ACCENT_OVERLAYS[18]); // white black
         ACCENT_MAP.put(20, ACCENT_OVERLAYS[19]); // indigo
+        ACCENT_MAP.put(21, ACCENT_OVERLAYS[20]); // oxygen red
     }
 
     private static final HashSet<Uri> THEMING_SYSTEM_SETTINGS = new HashSet();
