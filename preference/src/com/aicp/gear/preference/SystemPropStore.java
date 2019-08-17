@@ -19,7 +19,7 @@ package com.aicp.gear.preference;
 import android.os.SystemProperties;
 import android.preference.PreferenceDataStore;
 
-public class SystemPropStore extends android.support.v7.preference.PreferenceDataStore
+public class SystemPropStore extends androidx.preference.PreferenceDataStore
         implements PreferenceDataStore {
 
     public boolean getBoolean(String key, boolean defValue) {
