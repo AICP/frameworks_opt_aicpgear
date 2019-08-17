@@ -17,7 +17,7 @@
 package com.aicp.gear.preference;
 
 import android.content.Context;
-import android.support.v14.preference.SwitchPreference;
+import androidx.preference.SwitchPreference;
 import android.util.AttributeSet;
 
 public class SystemSettingSwitchPreference extends SwitchPreference {
