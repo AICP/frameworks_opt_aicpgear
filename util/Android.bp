@@ -1,0 +1,13 @@
+android_library {
+
+    name: "com.aicpgear.util",
+
+    optimize: {
+        enabled: false,
+    },
+    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_JAR_EXCLUDED_FILES
+    // LOCAL_JAR_EXCLUDED_FILES := none
+
+    srcs: ["src/**/*.java"],
+
+}
