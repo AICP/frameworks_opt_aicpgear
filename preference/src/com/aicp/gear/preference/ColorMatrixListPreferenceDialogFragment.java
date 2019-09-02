@@ -18,7 +18,9 @@
 package com.aicp.gear.preference;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +29,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -59,6 +62,10 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
     private CharSequence[] mEntryPreviews;
     private CharSequence[] mEntryPreviewsLight;
     private ColorListEntry[] mColorListEntries;
+
+    private boolean mExpertMode = false;
+
+    private LinearLayout mBaseLayout;
 
     public static ColorMatrixListPreferenceDialogFragment newInstance(String key) {
         final ColorMatrixListPreferenceDialogFragment fragment = new ColorMatrixListPreferenceDialogFragment();
@@ -145,10 +152,28 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
 
     @Override
     protected View onCreateDialogView(Context context) {
+        mBaseLayout = new LinearLayout(context);
+        mBaseLayout.setOrientation(LinearLayout.VERTICAL);
+
+        populateView(context);
+
+        ViewGroup.LayoutParams layoutParams =
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+        ScrollView view = new ScrollView(context);
+        view.setLayoutParams(layoutParams);
+        view.addView(mBaseLayout);
+        return view;
+    }
+
+    private void rebuildView(Context context) {
+        mBaseLayout.removeAllViews();
+        populateView(context);
+    }
+
+    private void populateView(Context context) {
         int previewSize = getResources()
                 .getDimensionPixelSize(R.dimen.color_matrix_list_preview_size);
-
-        LinearLayout baseLayout = new LinearLayout(context);
 
         ViewGroup.LayoutParams layoutParams =
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -169,14 +194,11 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
                 new LinearLayout.LayoutParams(0, previewSize);
         firstTextChildLayoutParams.weight = 2;
 
-        baseLayout.setLayoutParams(layoutParams);
-        baseLayout.setOrientation(LinearLayout.VERTICAL);
-
         for (int i = 0; i < mColorListEntries.length;) {
             LinearLayout rowLayout = new LinearLayout(context);
             rowLayout.setLayoutParams(layoutParams);
             rowLayout.setOrientation(LinearLayout.HORIZONTAL);
-            baseLayout.addView(rowLayout);
+            mBaseLayout.addView(rowLayout);
             for (int j = 0; j < mColumnCount && i < mEntries.length; j++) {
                 boolean selected = mColorListEntries[i].entryValue.toString().equals(mValue);
                 View child;
@@ -198,7 +220,7 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
                         tv.setTextColor(getAccentColor());
                     }
                 } else {
-                    if (color2 != color) {
+                    if (mExpertMode && color2 != color) {
                         // Two previews, with weight on the one chosen from the theme
                         LinearLayout childLayout = new LinearLayout(context);
                         childLayout.setOrientation(LinearLayout.VERTICAL);
@@ -237,10 +259,6 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
                 i++;
             }
         }
-        ScrollView view = new ScrollView(context);
-        view.setLayoutParams(layoutParams);
-        view.addView(baseLayout);
-        return view;
     }
 
     private View.OnClickListener mChildClickListener = new View.OnClickListener() {
@@ -268,6 +286,31 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
          * press 'Ok'.
          */
         builder.setPositiveButton(null, null);
+
+        // Toggle to expert mode
+        builder.setNeutralButton(R.string.color_matrix_list_expert_mode, null);
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final AlertDialog dialog = (AlertDialog) super.onCreateDialog(savedInstanceState);
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                final Button neutralButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                neutralButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mExpertMode = !mExpertMode;
+                        neutralButton.setText(mExpertMode
+                                ? R.string.color_matrix_list_complainer_mode
+                                : R.string.color_matrix_list_expert_mode);
+                        rebuildView(getContext());
+                    }
+                });
+            }
+        });
+        return dialog;
     }
 
     @Override
