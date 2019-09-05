@@ -147,6 +147,7 @@ public class ThemeOverlayHelper {
 
     private static final HashSet<Uri> THEMING_SYSTEM_SETTINGS = new HashSet();
     static {
+        /*
         THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_BASE));
         THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_ACCENT));
         THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(Settings.System.THEMING_CORNERS));
@@ -155,6 +156,7 @@ public class ThemeOverlayHelper {
                     Settings.System.THEMING_CONTROL_NIGHT_MODE));
         THEMING_SYSTEM_SETTINGS.add(Settings.System.getUriFor(
                     Settings.System.THEMING_SYSTEM_ICONS_STYLE));
+                    */
     }
 
     private ThemeOverlayHelper() {}
@@ -165,6 +167,7 @@ public class ThemeOverlayHelper {
 
     public static boolean updateOverlays(Context context, IOverlayManager om, int userId) {
         boolean changed = false;
+        /*
         ContentResolver resolver = context.getContentResolver();
         int baseTheme = Settings.System.getInt(resolver, Settings.System.THEMING_BASE, 0);
         boolean isDarkTheme = isDarkBaseTheme(baseTheme);
@@ -230,6 +233,7 @@ public class ThemeOverlayHelper {
         changed |= setOverlayEnabled(om, userId, QS_SHAPE_HEXAGON_OVERLAY, qsStyleSetting == 6);
 
         updateNightMode(context, isDarkTheme);
+        */
 
         return changed;
     }
@@ -280,6 +284,7 @@ public class ThemeOverlayHelper {
                                                                 String preferenceKey,
                                                                 Integer previousValue,
                                                                 int newValue) {
+        /*
         if (previousValue == null) {
             // This means new value was not stored yet, we can still grab the old value
             // (or this method wasn't used properly)
@@ -306,9 +311,12 @@ public class ThemeOverlayHelper {
         } else {
             return false;
         }
+        */
+        return false;
     }
 
     private static void updateNightMode(Context context, boolean isUsingDarkTheme) {
+        /*
         if (Settings.System.getInt(context.getContentResolver(),
                     Settings.System.THEMING_CONTROL_NIGHT_MODE, 1) == 0) {
             // Controlling night mode together with our theme disabled
@@ -318,6 +326,7 @@ public class ThemeOverlayHelper {
         uiManager.setNightMode(isUsingDarkTheme
                 ? UiModeManager.MODE_NIGHT_YES
                 : UiModeManager.MODE_NIGHT_NO);
+                */
     }
 
 }

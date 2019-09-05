@@ -51,10 +51,10 @@ public class ActionHelper {
     }
 
     private static String getRecentAppSidebarProvider(Context context) {
-        String config = Settings.System.getStringForUser(
+        String config = "";/*Settings.System.getStringForUser(
                 context.getContentResolver(),
                 Settings.System.RECENT_APP_SIDEBAR_CONTENT,
-                UserHandle.USER_CURRENT);
+                UserHandle.USER_CURRENT);*/
         if (config == null) {
             config = "";
         }
@@ -69,8 +69,8 @@ public class ActionHelper {
         } else {
             config = ConfigSplitHelper.setActionConfig(actionConfig, false);
         }
-        Settings.System.putString(context.getContentResolver(),
-                Settings.System.RECENT_APP_SIDEBAR_CONTENT, config);
+        /*Settings.System.putString(context.getContentResolver(),
+                Settings.System.RECENT_APP_SIDEBAR_CONTENT, config);*/
     }
 
     // General methods to retrieve the correct icon for the respective action.
