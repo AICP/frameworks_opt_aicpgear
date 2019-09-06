@@ -17,14 +17,11 @@
 
 package com.aicp.gear.preference;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceDialogFragment;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -35,10 +32,14 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceDialogFragmentCompat;
+
 import java.util.Arrays;
 
 
-public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFragment {
+public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFragmentCompat {
 
     private static final String SAVE_STATE_VALUE = "ColorMatrixListPreferenceDialogFragment.value";
     private static final String SAVE_STATE_ENTRIES =

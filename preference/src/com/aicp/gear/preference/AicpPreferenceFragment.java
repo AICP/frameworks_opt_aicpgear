@@ -16,10 +16,10 @@
 
 package com.aicp.gear.preference;
 
-import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.Preference;
 
-public abstract class AicpPreferenceFragment extends PreferenceFragment {
+public abstract class AicpPreferenceFragment extends PreferenceFragmentCompat {
 
     private static final String DIALOG_FRAGMENT_TAG =
             "com.aicp.gear.preference.AicpPreferenceFragment.DIALOG";
