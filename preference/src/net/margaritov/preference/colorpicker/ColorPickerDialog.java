@@ -248,11 +248,11 @@ public class ColorPickerDialog
     }
 
     private void startLedPreview(int color) {
-        mNotificationManager.forceShowLedLight(color & 0xffffff);
+        //mNotificationManager.forceShowLedLight(color & 0xffffff);
     }
 
     private void stopLedPreview() {
-        mNotificationManager.forceShowLedLight(-1);
+        //mNotificationManager.forceShowLedLight(-1);
     }
 
 }
