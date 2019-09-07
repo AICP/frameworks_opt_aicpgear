@@ -50,6 +50,14 @@ public class ColorMatrixListPreference extends ListPreference {
         this(context, null);
     }
 
+    public void setEntryPreviews(CharSequence[] entryPreviews) {
+        mEntryPreviews = entryPreviews;
+    }
+
+    public void setEntryPreviewsLight(CharSequence[] entryPreviewsLight) {
+        mEntryPreviewsLight = entryPreviewsLight;
+    }
+
     public CharSequence[] getEntryPreviews() {
         return mEntryPreviews;
     }
