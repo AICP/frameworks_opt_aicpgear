@@ -38,6 +38,8 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 
 import java.util.Arrays;
 
+import static com.aicp.gear.preference.ColorMatrixListPreference.COLOR_MAGIC_TEXT;
+
 
 public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFragmentCompat {
 
@@ -50,8 +52,6 @@ public class ColorMatrixListPreferenceDialogFragment extends PreferenceDialogFra
             "ColorMatrixListPreferenceDialogFragment.entryPreviews";
     private static final String SAVE_STATE_ENTRY_PREVIEWS_LIGHT =
             "ColorMatrixListPreferenceDialogFragment.entryPreviewsLight";
-
-    private static final int COLOR_MAGIC_TEXT = 0x1000000;
 
     // TODO config?
     private int mColumnCount = 5;

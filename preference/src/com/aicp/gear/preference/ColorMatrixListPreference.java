@@ -22,6 +22,8 @@ import android.util.AttributeSet;
 
 public class ColorMatrixListPreference extends ListPreference {
 
+    public static final int COLOR_MAGIC_TEXT = 0x1000000;
+
     private CharSequence[] mEntryPreviews;
     private CharSequence[] mEntryPreviewsLight;
 
@@ -48,6 +50,14 @@ public class ColorMatrixListPreference extends ListPreference {
 
     public ColorMatrixListPreference(Context context) {
         this(context, null);
+    }
+
+    public void setEntryPreviews(CharSequence[] entryPreviews) {
+        mEntryPreviews = entryPreviews;
+    }
+
+    public void setEntryPreviewsLight(CharSequence[] entryPreviewsLight) {
+        mEntryPreviewsLight = entryPreviewsLight;
     }
 
     public CharSequence[] getEntryPreviews() {
