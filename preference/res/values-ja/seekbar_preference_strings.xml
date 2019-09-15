@@ -17,10 +17,9 @@
  * limitations under the License.
  */
 -->
-<resources>
-    <string name="press_color_to_apply">下の色を押すと適用します</string>
-    <string name="hex">Hex:</string>
-    <string name="hex_hint">#ff000000</string>
-    <string name="set">設定</string>
-    <string name="color_default">既定</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="seekbar_no_default_value">既定値が設定されていません</string>
+    <string name="seekbar_default_value_set"><xliff:g id="number">%d</xliff:g>の既定に設定</string>
+    <string name="seekbar_default_value_already_set">既定値は既に設定されています</string>
+    <string name="seekbar_default_string">既定</string>
 </resources>
