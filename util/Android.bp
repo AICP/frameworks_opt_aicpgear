@@ -1,0 +1,13 @@
+android_library {
+
+    name: "AicpGear-util",
+
+    optimize: {
+        enabled: false,
+    },
+
+    srcs: ["src/**/*.java"],
+
+    resource_dirs: ["res"],
+
+}

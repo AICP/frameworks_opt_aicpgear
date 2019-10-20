@@ -50,7 +50,7 @@ public class OverlayPreference extends ListPreference {
     }
 
     public OverlayPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.dialogPreferenceStyle);
+        this(context, attrs, android.R.attr.dialogPreferenceStyle);
     }
 
     public OverlayPreference(Context context) {
