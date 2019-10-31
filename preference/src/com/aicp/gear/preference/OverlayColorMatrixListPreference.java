@@ -59,7 +59,7 @@ public class OverlayColorMatrixListPreference extends ColorMatrixListPreference 
     }
 
     public OverlayColorMatrixListPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.dialogPreferenceStyle);
+        this(context, attrs, R.attr.dialogPreferenceStyle);
     }
 
     public OverlayColorMatrixListPreference(Context context) {

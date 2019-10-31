@@ -8,7 +8,7 @@ android_library {
 
     srcs: ["src/**/*.java"],
 
-    libs: [
+    static_libs: [
         "androidx.core_core",
         "androidx.preference_preference",
         "androidx.appcompat_appcompat",

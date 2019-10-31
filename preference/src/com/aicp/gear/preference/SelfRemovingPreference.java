@@ -41,7 +41,7 @@ public class SelfRemovingPreference extends Preference {
 
     public SelfRemovingPreference(Context context, AttributeSet attrs) {
         this(context, attrs, ConstraintsHelper.getAttr(
-                context, R.attr.preferenceStyle, android.R.attr.preferenceStyle));
+                context, R.attr.preferenceStyle, R.attr.preferenceStyle));
     }
 
     public SelfRemovingPreference(Context context) {
