@@ -26,6 +26,17 @@ public class ThemeOverlayHelper {
 
     public static final String NOVERLAY_PKG = "default_pkg";
 
+    private static final String DEFAULT_DARK_CATEGORY = "aicp.defaultdark";
+    private static final String DEFAULT_DARK_TARGETS = "android"
+            + ";com.android.contacts"
+            + ";com.android.deskclock"
+            + ";com.android.dialer"
+            + ";com.android.messaging"
+            + ";com.android.phone"
+            + ";com.android.server.telecom";
+    private static final String DEFAULT_DARK_ENABLE_PACKAGE =
+            "com.aicp.overlay.defaultdark.android";
+
     private final IOverlayManager mOverlayService;
     private final PackageManager mPackageManager;
     private final Context mContext;
@@ -187,6 +198,12 @@ public class ThemeOverlayHelper {
             colors[i] = getThemeColor(pkgs[i], resName);
         }
         return colors;
+    }
+
+    public static void onBootCompleted(Context context) {
+        ThemeOverlayHelper defaultDarkHelper = new ThemeOverlayHelper(context,
+                DEFAULT_DARK_CATEGORY, DEFAULT_DARK_TARGETS);
+        defaultDarkHelper.setTheme(DEFAULT_DARK_ENABLE_PACKAGE);
     }
 
 }
