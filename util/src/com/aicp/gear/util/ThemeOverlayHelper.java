@@ -37,6 +37,15 @@ public class ThemeOverlayHelper {
     private static final String DEFAULT_DARK_ENABLE_PACKAGE =
             "com.aicp.overlay.defaultdark.android";
 
+
+    private static final String[] ICON_PACK_CATEGORIES = {
+        "android.theme.customization.icon_pack.android",
+        "android.theme.customization.icon_pack.systemui",
+        "android.theme.customization.icon_pack.settings",
+        "android.theme.customization.icon_pack.launcher",
+        "android.theme.customization.icon_pack.themepicker",
+    };
+
     private final IOverlayManager mOverlayService;
     private final PackageManager mPackageManager;
     private final Context mContext;
@@ -115,6 +124,31 @@ public class ThemeOverlayHelper {
         if (NOVERLAY_PKG.equals(value) && TextUtils.isEmpty(current)
                 || TextUtils.equals(value, current)) {
             // Already set.
+            return true;
+        }
+        if (ICON_PACK_CATEGORIES[0].equals(mCategory)) {
+            // Special handling for icon pack settings
+            if (NOVERLAY_PKG.equals(value)) {
+                String basePkg = current.substring(0, current.lastIndexOf("."));
+                for (String category: ICON_PACK_CATEGORIES) {
+                    String pkg = basePkg + category.substring(category.lastIndexOf("."));
+                    try {
+                        mOverlayService.setEnabled(pkg, false, UserHandle.myUserId());
+                    } catch (RemoteException re) {
+                        re.printStackTrace();
+                    }
+                }
+            } else {
+                String basePkg = value.substring(0, value.lastIndexOf("."));
+                for (String category: ICON_PACK_CATEGORIES) {
+                    String pkg = basePkg + category.substring(category.lastIndexOf("."));
+                    try {
+                        mOverlayService.setEnabledExclusiveInCategory(pkg, UserHandle.myUserId());
+                    } catch (RemoteException re) {
+                        re.printStackTrace();
+                    }
+                }
+            }
             return true;
         }
         if (NOVERLAY_PKG.equals(value)) {
