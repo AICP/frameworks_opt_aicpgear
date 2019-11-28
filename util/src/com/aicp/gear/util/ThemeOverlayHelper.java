@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -86,7 +87,6 @@ public class ThemeOverlayHelper {
         try {
             infos = mOverlayService.getOverlayInfosForTarget(target, UserHandle.myUserId());
             pkgs = new ArrayList<>(infos.size());
-            pkgs.add(NOVERLAY_PKG);
             for (int i = 0, size = infos.size(); i < size; i++) {
                 if (isTheme(infos.get(i))) {
                     if (infos.get(i).isEnabled() && currentThemeOnly) {
@@ -104,6 +104,10 @@ public class ThemeOverlayHelper {
         if (currentThemeOnly) {
             return new String[0];
         }
+        // Sort to have a reproducable order
+        Collections.sort(pkgs);
+        // Always show "no overlay" option first.
+        pkgs.add(0, NOVERLAY_PKG);
         return pkgs.toArray(new String[pkgs.size()]);
     }
 
