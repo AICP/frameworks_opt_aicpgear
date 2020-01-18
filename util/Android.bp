@@ -10,4 +10,7 @@ android_library {
 
     resource_dirs: ["res"],
 
+    static_libs: [
+        "telephony-ext",
+    ],
 }
