@@ -126,8 +126,8 @@ public class ThemeOverlayHelper {
                     String pkg = basePkg + category.substring(category.lastIndexOf("."));
                     try {
                         mOverlayService.setEnabled(pkg, false, UserHandle.myUserId());
-                    } catch (RemoteException re) {
-                        re.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } else {
@@ -136,8 +136,8 @@ public class ThemeOverlayHelper {
                     String pkg = basePkg + category.substring(category.lastIndexOf("."));
                     try {
                         mOverlayService.setEnabledExclusiveInCategory(pkg, UserHandle.myUserId());
-                    } catch (RemoteException re) {
-                        re.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }
@@ -146,15 +146,15 @@ public class ThemeOverlayHelper {
         if (NOVERLAY_PKG.equals(value)) {
             try {
                 mOverlayService.setEnabled(current, false, UserHandle.myUserId());
-            } catch (RemoteException re) {
-                re.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             for (int i = 1; i < mTargets.length; i++) {
                 String pkg = current.replace(mTargets[0], mTargets[i]);
                 try {
                     mOverlayService.setEnabled(pkg, false, UserHandle.myUserId());
-                } catch (RemoteException re) {
-                    re.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         } else {
@@ -168,16 +168,16 @@ public class ThemeOverlayHelper {
                 String pkg = ((String) value).replace(mTargets[0], mTargets[i]);
                 try {
                     mOverlayService.setEnabled(pkg, true, UserHandle.myUserId());
-                } catch (RemoteException re) {
-                    re.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 // Disable previously applied package for additional target
                 if (!NOVERLAY_PKG.equals(current)) {
                     pkg = current.replace(mTargets[0], mTargets[i]);
                     try {
                         mOverlayService.setEnabled(pkg, false, UserHandle.myUserId());
-                    } catch (RemoteException re) {
-                        re.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }
