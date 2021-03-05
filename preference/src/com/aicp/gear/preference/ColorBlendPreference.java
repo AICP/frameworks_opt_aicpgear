@@ -18,6 +18,7 @@
 package com.aicp.gear.preference;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -41,6 +42,8 @@ public class ColorBlendPreference extends Preference
 
     private static final String TAG = "ColorBlendPreference";
 
+    private static final String AICPGEARNS = "http://schemas.android.com/apk/res-auto";
+
     private String mColorStartKey;
     private String mColorEndKey;
     private String mBlendReverseKey;
@@ -56,6 +59,9 @@ public class ColorBlendPreference extends Preference
     private int mColorStart = mDefaultColorStart;
     private int mColorEnd = mDefaultColorEnd;
     private boolean mBlendReverse = mDefaultBlendReverse;
+
+    private NotificationManager mNotificationManager;
+    private boolean mPreviewLed = false;
 
     // Preview values for the dialog before persisting settings
     private int mPreviewColorStart;
@@ -102,7 +108,13 @@ public class ColorBlendPreference extends Preference
 
     private void init(Context context, AttributeSet attrs) {
         setOnPreferenceClickListener(this);
+
+        mNotificationManager = (NotificationManager)
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
+
         if (attrs != null) {
+            mPreviewLed = attrs.getAttributeBooleanValue(AICPGEARNS, "ledPreview", false);
+
             final TypedArray a = context.obtainStyledAttributes(attrs,
                     R.styleable.ColorBlendPreference);
             mDefaultColorStart =
@@ -251,6 +263,7 @@ public class ColorBlendPreference extends Preference
                     public void onClick(DialogInterface dialog, int which) {
                         persistValues();
                         mDialog = null;
+                        stopLedPreview();
                     }
                 })
                 .setNegativeButton(R.string.color_blend_cancel, new DialogInterface.OnClickListener() {
@@ -258,6 +271,7 @@ public class ColorBlendPreference extends Preference
                     public void onClick(DialogInterface dialog, int which) {
                         // Only close dialog
                         mDialog = null;
+                        stopLedPreview();
                     }
                 })
                 .setNeutralButton(R.string.color_blend_reset, new DialogInterface.OnClickListener() {
@@ -267,18 +281,21 @@ public class ColorBlendPreference extends Preference
                         setValues(mDefaultColorStart, mDefaultColorEnd, mDefaultBlendReverse);
                         persistValues();
                         mDialog = null;
+                        stopLedPreview();
                     }
                 })
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
                         mDialog = null;
+                        stopLedPreview();
                     }
                 })
                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
                         mDialog = null;
+                        stopLedPreview();
                     }
                 })
                 .show();
@@ -313,11 +330,12 @@ public class ColorBlendPreference extends Preference
 
     private void updateDialogSliderPreview() {
         int currentPreview = mDialogColorPreviewSlider.getProgress();
-        mDialogPreviewColorBetween.setBackgroundColor(
-                AicpUtils.getBlendColorForPercent(mPreviewColorEnd, mPreviewColorStart,
-                        mPreviewBlendReverse, currentPreview));
+        int previewColor = AicpUtils.getBlendColorForPercent(mPreviewColorEnd, mPreviewColorStart,
+                        mPreviewBlendReverse, currentPreview);
+        mDialogPreviewColorBetween.setBackgroundColor(previewColor);
         mDialogColorPreviewText.setText(
                 getContext().getString(R.string.color_blend_preview, currentPreview));
+        startLedPreview(previewColor);
     }
 
     private View.OnClickListener mDialogPreviewClickListener = new View.OnClickListener() {
@@ -327,11 +345,13 @@ public class ColorBlendPreference extends Preference
                 ColorPickerDialog pickerDialog =
                         new ColorPickerDialog(getContext(), mPreviewColorStart);
                 pickerDialog.setOnColorChangedListener(mStartColorChangedListener);
+                pickerDialog.setPreviewLed(mPreviewLed);
                 pickerDialog.show();
             } else if (v == mDialogPreviewColorEnd) {
                 ColorPickerDialog pickerDialog =
                         new ColorPickerDialog(getContext(), mPreviewColorEnd);
                 pickerDialog.setOnColorChangedListener(mEndColorChangedListener);
+                pickerDialog.setPreviewLed(mPreviewLed);
                 pickerDialog.show();
             } else if (v == mDialogPreviewColorBetween) {
                 mPreviewBlendReverse = !mPreviewBlendReverse;
@@ -387,4 +407,13 @@ public class ColorBlendPreference extends Preference
         updatePreview();
     }
 
+    private void startLedPreview(int color) {
+        if (!mPreviewLed) return;
+        mNotificationManager.forceShowLedLight(color & 0xffffff);
+    }
+
+    private void stopLedPreview() {
+        if (!mPreviewLed) return;
+        mNotificationManager.forceShowLedLight(-1);
+    }
 }
