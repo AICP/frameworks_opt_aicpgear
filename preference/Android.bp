@@ -14,6 +14,7 @@ android_library {
         "androidx.appcompat_appcompat",
         "androidx.recyclerview_recyclerview",
         "AicpGear-util",
+        "SettingsLib",
     ],
 
     resource_dirs: ["res"],
