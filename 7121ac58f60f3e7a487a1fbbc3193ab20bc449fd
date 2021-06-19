@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292bb289_d17369a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-06-19T12:26:33Z",
+      "side": 1,
+      "message": "My initial implementation for refresh rates was going to use this but then moved to something else.\nJust left it to be added to the lib for future use. ",
+      "revId": "7121ac58f60f3e7a487a1fbbc3193ab20bc449fd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
