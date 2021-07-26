@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a8b809a_3a9c621f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-07-26T06:40:10Z",
+      "side": 1,
+      "message": "Wait for upstream https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/313957",
+      "revId": "1c90b9864beff3b75336315a93cac74a41209d66",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
