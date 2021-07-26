@@ -16,6 +16,23 @@
       "message": "Wait for upstream https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/313957",
       "revId": "1c90b9864beff3b75336315a93cac74a41209d66",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6dffd7d_dc18f827",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-07-26T12:26:02Z",
+      "side": 1,
+      "message": "ong/.intermediates/frameworks/opt/aicpgear/phonelib/org.lineageos.lib.phone/andr\noid_common/javac/classes \u0026\u0026 rm -rf \"out/soong/.intermediates/frameworks/opt/aicp\ngear/phonelib/org.lineageos.lib.phone/android_common/javac/srcjars\"\nframeworks/opt/aicpgear/phonelib/src/java/org/lineageos/lib/phone/SensitivePhone\nNumbers.java:78: error: cannot find symbol\n        File sensiblePNFile \u003d new File(Environment.getProductDirectory(),\n                                                  ^\n  symbol:   method getProductDirectory()\n  location: class Environment\n1 error\n",
+      "revId": "1c90b9864beff3b75336315a93cac74a41209d66",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }
