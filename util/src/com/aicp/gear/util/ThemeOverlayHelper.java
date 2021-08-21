@@ -1,9 +1,11 @@
 package com.aicp.gear.util;
 
+import android.app.ActivityManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
+import android.content.om.OverlayManager;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -224,6 +226,31 @@ public class ThemeOverlayHelper {
             colors[i] = getThemeColor(pkgs[i], resName);
         }
         return colors;
+    }
+
+    public static void setCutoutOverlay(OverlayManager om, boolean enable) {
+        UserHandle userId = UserHandle.of(ActivityManager.getCurrentUser());
+        try {
+            om.setEnabled("com.android.overlay.hidecutout", enable, userId);
+        } catch (Exception e) {
+        }
+    }
+
+    public static void setStatusBarStockOverlay(OverlayManager om, boolean enable) {
+        UserHandle userId = UserHandle.of(ActivityManager.getCurrentUser());
+        try {
+            om.setEnabled("com.android.overlay.statusbarstock", enable, userId);
+            om.setEnabled("com.android.overlay.statusbarstocksysui", enable, userId);
+        } catch (Exception e) {
+        }
+    }
+
+    public static void setImmersiveOverlay(OverlayManager om, boolean enable) {
+        UserHandle userId = UserHandle.of(ActivityManager.getCurrentUser());
+        try {
+            om.setEnabled("com.android.overlay.immersive", enable, userId);
+        } catch (Exception e) {
+        }
     }
 
 }
