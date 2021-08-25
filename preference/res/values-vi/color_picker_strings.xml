@@ -17,8 +17,8 @@
  */
 -->
 <resources>
-    <string name="press_color_to_apply">ڕەنگێک لە خوارەوە داگرە بۆ جێنان</string>
+    <string name="press_color_to_apply">Chạm vào màu bên dưới để áp dụng</string>
     <string name="hex">Hex:</string>
-    <string name="set">دانان</string>
-    <string name="color_default">بنەڕەت</string>
+    <string name="set">Đặt</string>
+    <string name="color_default">Mặc định</string>
 </resources>

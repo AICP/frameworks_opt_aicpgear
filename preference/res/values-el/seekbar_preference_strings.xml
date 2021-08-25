@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 -->
-<resources>
-    <string name="press_color_to_apply">ڕەنگێک لە خوارەوە داگرە بۆ جێنان</string>
-    <string name="hex">Hex:</string>
-    <string name="set">دانان</string>
-    <string name="color_default">بنەڕەت</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="seekbar_no_default_value">Δεν έχει τεθεί προεπιλεγμένη τιμή</string>
+    <string name="seekbar_default_value_set">Η προεπιλεγμένη τιμή έχει οριστεί σε <xliff:g id="number">%d</xliff:g></string>
+    <string name="seekbar_default_value_already_set">Η προεπιλεγμένη τιμή έχει ήδη οριστεί</string>
+    <string name="seekbar_default_string">Προεπιλογή</string>
 </resources>
