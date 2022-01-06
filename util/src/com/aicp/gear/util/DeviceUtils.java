@@ -67,7 +67,7 @@ public class DeviceUtils {
         return (dm.getWifiDisplayStatus().getFeatureState()
                 != WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE);
     }
-
+/*
     public static boolean deviceSupportsUsbTether(Context context) {
         ConnectivityManager cm =
             (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -79,7 +79,7 @@ public class DeviceUtils {
             (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE);
     }
-
+*/
     public static boolean deviceSupportsBluetooth() {
         return (BluetoothAdapter.getDefaultAdapter() != null);
     }
@@ -189,13 +189,13 @@ public class DeviceUtils {
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return telephony != null && telephony.isVoiceCapable();
     }
-
+/*
     public static boolean isWifiOnly(Context context) {
         ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
         return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
-
+*/
     public static boolean deviceSupportsFingerPrint(Context context) {
         PackageManager pm =
           (PackageManager) context.getPackageManager();

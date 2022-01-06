@@ -408,12 +408,14 @@ public class ColorBlendPreference extends Preference
     }
 
     private void startLedPreview(int color) {
-        if (!mPreviewLed) return;
-        mNotificationManager.forceShowLedLight(color & 0xffffff);
+    //    if (!mPreviewLed) return;
+    //    mNotificationManager.forceShowLedLight(color & 0xffffff);
+        return;
     }
 
     private void stopLedPreview() {
-        if (!mPreviewLed) return;
-        mNotificationManager.forceShowLedLight(-1);
+ //       if (!mPreviewLed) return;
+   //     mNotificationManager.forceShowLedLight(-1);
+	return;
     }
 }

@@ -142,7 +142,7 @@ public class ColorPickerDialog
         }
 
         if (mPreviewLed) {
-            startLedPreview(color);
+           // startLedPreview(color);
         }
     }
 
@@ -162,7 +162,7 @@ public class ColorPickerDialog
          */
 
         if (mPreviewLed) {
-            startLedPreview(color);
+            //startLedPreview(color);
         }
     }
 
@@ -218,7 +218,7 @@ public class ColorPickerDialog
         state.putInt("old_color", mOldColor.getColor());
         state.putInt("new_color", mNewColor.getColor());
         if (mPreviewLed) {
-            stopLedPreview();
+            //stopLedPreview();
         }
         return state;
     }
@@ -233,20 +233,20 @@ public class ColorPickerDialog
     @Override
     public void onStop() {
         super.onStop();
-        stopLedPreview();
+        //stopLedPreview();
     }
 
     public void setPreviewLed(boolean previewLed) {
         if (mPreviewLed != previewLed) {
             mPreviewLed = previewLed;
             if (mPreviewLed) {
-                startLedPreview(mNewColor.getColor());
+                //startLedPreview(mNewColor.getColor());
             } else {
-                stopLedPreview();
+               // stopLedPreview();
             }
         }
     }
-
+/*
     private void startLedPreview(int color) {
         mNotificationManager.forceShowLedLight(color & 0xffffff);
     }
@@ -254,5 +254,5 @@ public class ColorPickerDialog
     private void stopLedPreview() {
         mNotificationManager.forceShowLedLight(-1);
     }
-
+*/
 }

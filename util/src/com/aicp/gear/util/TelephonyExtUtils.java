@@ -150,13 +150,13 @@ public final class TelephonyExtUtils {
      */
     public int getCurrentUiccCardProvisioningStatus(int slotId) {
         IExtTelephony service = getService();
-        if (service != null && slotId != SubscriptionManager.INVALID_SIM_SLOT_INDEX) {
+        /*if (service != null && slotId != SubscriptionManager.INVALID_SIM_SLOT_INDEX) {
             try {
                 return mExtTelephony.getCurrentUiccCardProvisioningStatus(slotId);
             } catch (RemoteException ex) {
                 Log.e(TAG, "Failed to get provisioning status for slotId: " + slotId, ex);
             }
-        }
+        }*/
         return INVALID_STATE;
     }
 
@@ -201,13 +201,13 @@ public final class TelephonyExtUtils {
         AsyncTask<Integer, Void, Integer> task = new AsyncTask<Integer, Void, Integer>() {
             @Override
             protected Integer doInBackground(Integer... params) {
-                try {
+              /*  try {
                     return params[0] == PROVISIONED
                             ? mExtTelephony.activateUiccCard(params[1])
                             : mExtTelephony.deactivateUiccCard(params[1]);
                 } catch (RemoteException ex) {
                     Log.e(TAG, actionStr + " sub failed for slotId: " + params[1]);
-                }
+                }*/
                 return -1;
             }
         };
