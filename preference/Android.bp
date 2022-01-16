@@ -15,6 +15,7 @@ android_library {
         "androidx.recyclerview_recyclerview",
         "AicpGear-util",
         "SettingsLib",
+        "SettingsLibMainSwitchPreference",
     ],
 
     resource_dirs: ["res"],
