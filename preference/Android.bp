@@ -1,13 +1,19 @@
 android_library {
 
     name: "AicpGear-preference",
-
+    defaults: [
+        "SettingsLibDefaults",
+        "SettingsLib-search-defaults",
+    ],
+    platform_apis: true,
     optimize: {
         enabled: false,
     },
-
     srcs: ["src/**/*.java"],
-
+    required: [
+        "privapp_whitelist_com.android.settings",
+        "settings-platform-compat-config",
+    ],
     static_libs: [
         "androidx.core_core",
         "androidx.preference_preference",
