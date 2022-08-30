@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f071150_8fb149de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-08-30T14:00:48Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- In AICP Extras,SeekbarPreferences show proper thumb when set on default value",
+      "revId": "0e37c522c8f734404d4d92e9617b3dec54c523a3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
