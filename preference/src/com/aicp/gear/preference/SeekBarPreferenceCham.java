@@ -105,7 +105,7 @@ public class SeekBarPreferenceCham extends Preference implements SeekBar.OnSeekB
         }
 
         TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(android.R.attr.colorForeground, typedValue, true);
+        context.getTheme().resolveAttribute(android.R.attr.colorAccent, typedValue, true);
         mThumbDefaultValueColor = typedValue.data;
         a.recycle();
     }
