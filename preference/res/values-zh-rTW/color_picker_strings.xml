@@ -19,6 +19,7 @@
 <resources>
     <string name="press_color_to_apply">按下顏色以套用</string>
     <string name="hex">十六進位：</string>
+    <string name="hex_hint">#ff000000</string>
     <string name="set">設定</string>
     <string name="color_default">預設</string>
 </resources>

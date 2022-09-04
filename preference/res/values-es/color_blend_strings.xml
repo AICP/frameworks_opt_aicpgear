@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="color_blend_reset">Restaurar</string>
+    <string name="color_blend_preview">Vista previa: %1$d%%</string>
+    <string name="color_preview_start">Inicio</string>
+    <string name="color_preview_end">Final</string>
+    <string name="color_preview_between">Entre</string>
+</resources>
