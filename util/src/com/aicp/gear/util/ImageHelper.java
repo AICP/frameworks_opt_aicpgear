@@ -179,11 +179,9 @@ public class ImageHelper {
 
     public static Drawable resize(Context context, Drawable image, int size) {
         if (image == null || context == null) {
-            return null;
-        }
-        if (!(image instanceof VectorDrawable)) {
             return image;
-        } else {
+        }
+        if (image instanceof BitmapDrawable) {
             int newSize = Converter.dpToPx(context, size);
             Bitmap bitmap = ((BitmapDrawable) image).getBitmap();
             Bitmap scaledBitmap = Bitmap.createBitmap(newSize, newSize, Config.ARGB_8888);
@@ -205,6 +203,7 @@ public class ImageHelper {
                     middleY - bitmap.getHeight() / 2, paint);
             return new BitmapDrawable(context.getResources(), scaledBitmap);
         }
+        return image;
     }
 
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
