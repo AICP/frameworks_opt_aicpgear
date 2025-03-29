@@ -18,6 +18,7 @@ package com.aicp.gear.preference;
 
 import android.os.SystemProperties;
 import android.preference.PreferenceDataStore;
+import android.util.Log;
 
 public class SystemPropStore extends androidx.preference.PreferenceDataStore
         implements PreferenceDataStore {
@@ -43,23 +44,43 @@ public class SystemPropStore extends androidx.preference.PreferenceDataStore
     }
 
     public void putBoolean(String key, boolean value) {
-        SystemProperties.set(key, "" + value);
+        try {
+            SystemProperties.set(key, "" + value);
+        } catch (Exception e) {
+            Log.e("SystemPropStore", "Failed to persist boolean for " + key, e);
+        }
     }
 
     public void putFloat(String key, float value) {
-        SystemProperties.set(key, "" + value);
+        try {
+            SystemProperties.set(key, "" + value);
+        } catch (Exception e) {
+            Log.e("SystemPropStore", "Failed to persist float for " + key, e);
+        }
     }
 
     public void putInt(String key, int value) {
-        SystemProperties.set(key, "" + value);
+        try {
+            SystemProperties.set(key, "" + value);
+        } catch (Exception e) {
+            Log.e("SystemPropStore", "Failed to persist int for " + key, e);
+        }
     }
 
     public void putLong(String key, long value) {
-        SystemProperties.set(key, "" + value);
+        try {
+            SystemProperties.set(key, "" + value);
+        } catch (Exception e) {
+            Log.e("SystemPropStore", "Failed to persist long for " + key, e);
+        }
     }
 
     public void putString(String key, String value) {
-        SystemProperties.set(key, value);
+        try {
+            SystemProperties.set(key, value);
+        } catch (Exception e) {
+            Log.e("SystemPropStore", "Failed to persist string for " + key, e);
+        }
     }
 
 }
