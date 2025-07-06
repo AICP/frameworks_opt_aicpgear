@@ -415,6 +415,16 @@ public class AicpUtils {
                 0, UserHandle.USER_CURRENT) != 0;
     }
 
+    public static int getQSTileLayoutRows(Context context) {
+        int value = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.QS_LAYOUT_COLUMNS_ROWS,
+                0, UserHandle.USER_CURRENT);
+        if (value == 0) {
+            value = 2;
+        }
+        return value;
+    }
+
     public static boolean getQSTileVerticalLayout(Context context, int defaultValue) {
         return Settings.System.getIntForUser(context.getContentResolver(),
                 Settings.System.QS_TILE_VERTICAL_LAYOUT,
