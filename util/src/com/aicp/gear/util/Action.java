@@ -43,6 +43,7 @@ import android.view.WindowManagerGlobal;
 
 import com.android.internal.statusbar.IStatusBarService;
 
+import java.lang.SecurityException;
 import java.net.URISyntaxException;
 
 public class Action {
@@ -253,7 +254,7 @@ public class Action {
             // otherwise let us do it here
             try {
                 WindowManagerGlobal.getWindowManagerService().dismissKeyguard(null, null);
-            } catch (RemoteException e) {
+            } catch (RemoteException|SecurityException e) {
                 Log.w("Action", "Error dismissing keyguard", e);
             }
             intent.addFlags(
