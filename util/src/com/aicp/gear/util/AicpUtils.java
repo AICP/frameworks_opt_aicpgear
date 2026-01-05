@@ -388,7 +388,7 @@ public class AicpUtils {
         return null;
     }
 
-
+/*
     public static int getQSColumnsCount(Context context, int resourceCount) {
         final int QS_COLUMNS_MIN = 2;
         final Resources res = context.getResources();
@@ -426,4 +426,5 @@ public class AicpUtils {
                 Settings.System.QS_TILE_VERTICAL_LAYOUT,
                 defaultValue, UserHandle.USER_CURRENT) != 0;
     }
+*/
 }
