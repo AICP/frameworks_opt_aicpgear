@@ -1,6 +1,8 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
  * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2026 AICP
+
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +19,7 @@
 package com.aicp.gear.preference;
 
 import android.content.Context;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.PreferenceDataStore;
 import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
@@ -26,7 +28,7 @@ import android.util.AttributeSet;
  * A SwitchPreference which can automatically remove itself from the hierarchy
  * based on constraints set in XML.
  */
-public abstract class SelfRemovingSwitchPreference extends SwitchPreference {
+public abstract class SelfRemovingSwitchPreference extends SwitchPreferenceCompat {
 
     private final ConstraintsHelper mConstraints;
 

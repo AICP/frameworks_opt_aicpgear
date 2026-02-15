@@ -12,6 +12,7 @@ android_library {
         "androidx.core_core",
         "androidx.preference_preference",
         "androidx.appcompat_appcompat",
+        "com.google.android.material_material",
         "androidx.recyclerview_recyclerview",
         "AicpGear-util",
         "SettingsLib",

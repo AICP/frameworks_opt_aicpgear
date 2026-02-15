@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Android Ice Cold Project
+ * Copyright (C) 2020-2026 Android Ice Cold Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@
 package com.aicp.gear.preference;
 
 import android.content.Context;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 import android.util.AttributeSet;
 
-public class SystemPropSwitchPreference extends SwitchPreference {
+public class SystemPropSwitchPreference extends SwitchPreferenceCompat {
 
     public SystemPropSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
