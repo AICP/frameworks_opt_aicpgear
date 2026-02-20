@@ -44,7 +44,8 @@ public class SecureSettingSwitchPreference extends SwitchPreferenceCompat {
         //setChecked(restoreValue ? getPersistedBoolean(mChecked)
         //        : (Boolean) defaultValue);
         // Instead, we better do
-        setChecked(restoreValue ? getPersistedBoolean((Boolean) defaultValue)
-                : (Boolean) defaultValue);
+       setChecked(restoreValue ?
+           getPersistedBoolean(mChecked) :
+           (defaultValue != null ? (Boolean) defaultValue : false));
     }
 }
