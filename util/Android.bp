@@ -6,7 +6,7 @@ android_library {
         enabled: false,
     },
 
-    srcs: ["src/**/*.java"],
+    srcs: ["src/**/*.java","src/**/*.kt",],
 
     resource_dirs: ["res"],
 
