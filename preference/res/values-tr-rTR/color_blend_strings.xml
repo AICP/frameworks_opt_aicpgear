@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="color_blend_reset">Sıfırla</string>
+    <string name="color_blend_preview">Ön izleme: %1$d%%</string>
+    <string name="color_preview_start">Başlat</string>
+    <string name="color_preview_end">Sonlandır</string>
+    <string name="color_preview_between">Arasında</string>
+</resources>
